@@ -10,5 +10,8 @@ namespace EticketsWebApp.Models
         public string profilePictureURL { get; set; }
         public string FullName { get; set; }
         public string Bio { get; set; }
+
+        //rlationShips
+        public List<Movie> Movies { get; set; }
     }
 }
