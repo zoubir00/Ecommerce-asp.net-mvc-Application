@@ -1,4 +1,4 @@
-﻿using EticketsWebApp.Data;
+﻿using EticketsWebApp.Data.Enums;
 
 namespace EticketsWebApp.Models
 {
