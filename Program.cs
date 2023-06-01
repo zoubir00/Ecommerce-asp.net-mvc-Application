@@ -1,4 +1,5 @@
 using EticketsWebApp.Data;
+using EticketsWebApp.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(ConnectionString);
 
 });
+
+// services
+builder.Services.AddScoped<IActorsService, ActorsService>();
 
 
 // Add services to the container.
