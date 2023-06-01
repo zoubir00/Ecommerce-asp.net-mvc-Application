@@ -18,5 +18,12 @@ namespace EticketsWebApp.Controllers
             var actors = await _service.GetAll();
             return View(actors);
         }
+
+        // Create
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
     }
 }
