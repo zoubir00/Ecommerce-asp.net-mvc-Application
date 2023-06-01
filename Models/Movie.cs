@@ -9,13 +9,31 @@ namespace EticketsWebApp.Models
         [Key]
         public int Id { get; set; }
 
+        [Display(Name ="Movie name")]
         public string Name { get; set; }
+
+        [Display(Name = "Movie description")]
+
         public string Description { get; set; }
+
+        [Display(Name = "Movie price")]
+
         public double Price { get; set; }
+
+        [Display(Name = "Movie image")]
+
         public string ImageUrl { get; set; }
+
+        [Display(Name = "Movie start date")]
+
         public DateTime StartDate { get; set; }
+
+        [Display(Name = "Movie End date")]
+
         public DateTime EndDate { get; set; }
-        
+
+        [Display(Name = "Movie Category")]
+
         public MovieCategory MovieCategory { get; set; }
 
         //RelationShips
