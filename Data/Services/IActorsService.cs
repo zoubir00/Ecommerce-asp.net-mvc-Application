@@ -9,6 +9,6 @@ namespace EticketsWebApp.Data.Services
         Task<Actor> GetById(int id);
         void Add(Actor actor);
         Task Updateasync(int id, Actor Newactor);
-        void Delete(Actor actor);
+        Task Delete(int id);
     }
 }

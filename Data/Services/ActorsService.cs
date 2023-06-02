@@ -17,9 +17,11 @@ namespace EticketsWebApp.Data.Services
             _context.SaveChanges();
         }
 
-        public void Delete(Actor actor)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Actors.FirstOrDefaultAsync(a => a.ActorId == id);
+             _context.Actors.Remove(result);
+           await _context.SaveChangesAsync();
         }
 
         // get all the actors
