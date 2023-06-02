@@ -29,9 +29,10 @@ namespace EticketsWebApp.Data.Services
             return result;
         }
 
-        public Actor GetById(int id)
+        public async Task<Actor> GetById(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Actors.FirstOrDefaultAsync(a=>a.ActorId==id);
+            return result;
         }
 
         public Actor Update(int id, Actor Newactor)

@@ -38,5 +38,12 @@ namespace EticketsWebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Details(int id)
+        {
+            var ActorDetail =await _service.GetById(id);
+            if (ActorDetail == null) return View("Empty"); 
+            return View(ActorDetail);
+        }
+
     }
 }
