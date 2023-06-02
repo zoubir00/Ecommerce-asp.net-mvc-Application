@@ -45,5 +45,24 @@ namespace EticketsWebApp.Controllers
             return View(ActorDetail);
         }
 
+        // Edit action
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var ActorDetail = await _service.GetById(id);
+            if (ActorDetail == null) return View("NotFound");
+            return View(ActorDetail);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.Updateasync(id, actor);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

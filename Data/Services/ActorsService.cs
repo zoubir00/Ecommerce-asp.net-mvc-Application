@@ -24,10 +24,7 @@ namespace EticketsWebApp.Data.Services
 
         // get all the actors
         public async  Task<IEnumerable<Actor>> GetAll()
-        {
-            var result = await _context.Actors.ToListAsync();
-            return result;
-        }
+            => await _context.Actors.ToListAsync();
 
         public async Task<Actor> GetById(int id)
         {
@@ -35,9 +32,11 @@ namespace EticketsWebApp.Data.Services
             return result;
         }
 
-        public Actor Update(int id, Actor Newactor)
+        public async Task Updateasync(int id, Actor Newactor)
         {
-            throw new NotImplementedException();
+            Newactor.ActorId = id;
+            _context.Update(Newactor);
+            await _context.SaveChangesAsync();
         }
     }
 }
