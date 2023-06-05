@@ -5,7 +5,7 @@ namespace EticketsWebApp.Models
     public class Cinema
     {
         [Key]
-        public int CinemaId { get; set; }
+        public int Id { get; set; }
         [Display(Name ="Cinema logo")]
         public string Logo { get; set; }
 

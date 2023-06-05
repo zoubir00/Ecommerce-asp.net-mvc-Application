@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EticketsWebApp.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace EticketsWebApp.Models
 {
-    public class Producer
+    public class Producer:IEntityBase
     {
         [Key]
-        public int ProducerId { get; set; }
+        public int Id { get ; set ; }
 
         [Display(Name = "Profile picture")]
         public string profilePictureURL { get; set; }
@@ -18,5 +19,6 @@ namespace EticketsWebApp.Models
 
         //rlationShips
         public List<Movie> Movies { get; set; }
+       
     }
 }
