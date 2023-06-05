@@ -41,5 +41,23 @@ namespace EticketsWebApp.Controllers
             await _service.Add(cinema);
             return RedirectToAction(nameof(Index));
         }
+
+        //Cinema/Edit
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var cinemaDetail = await _service.GetById(id);
+            if (cinemaDetail == null) return View("NotFount");
+            return View(cinemaDetail);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,[Bind("Id,Logo,Name,Description")] Cinema cinema)
+        {
+            if (!ModelState.IsValid) return View(cinema);
+            if(id==cinema.Id) await _service.Updateasync(id,cinema);
+
+            return View(cinema);
+        }
     }
 }
