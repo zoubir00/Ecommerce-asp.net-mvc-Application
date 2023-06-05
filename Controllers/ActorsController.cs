@@ -1,4 +1,5 @@
 ﻿using EticketsWebApp.Data;
+using EticketsWebApp.Data.Base;
 using EticketsWebApp.Data.Services;
 using EticketsWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +10,13 @@ namespace EticketsWebApp.Controllers
     public class ActorsController : Controller
     {
         private readonly IActorsService _service;
-
+      
         public ActorsController(IActorsService service)
         {
             _service = service;
+           
         }
+
         public async Task<IActionResult> Index()
         {
             var actors = await _service.GetAll();
@@ -33,7 +36,7 @@ namespace EticketsWebApp.Controllers
             {
                 return View(actor);
             }
-            _service.Add(actor);
+           await _service.Add(actor);
 
             return RedirectToAction(nameof(Index));
         }

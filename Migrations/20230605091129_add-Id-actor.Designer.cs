@@ -4,6 +4,7 @@ using EticketsWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EticketsWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230605091129_add-Id-actor")]
+    partial class addIdactor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,13 +51,13 @@ namespace EticketsWebApp.Migrations
 
             modelBuilder.Entity("EticketsWebApp.Models.Actor_Movie", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Actorid")
                         .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id", "MovieId");
+                    b.HasKey("Actorid", "MovieId");
 
                     b.HasIndex("MovieId");
 
@@ -163,7 +165,7 @@ namespace EticketsWebApp.Migrations
                 {
                     b.HasOne("EticketsWebApp.Models.Actor", "Actor")
                         .WithMany("Actors_Movies")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("Actorid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

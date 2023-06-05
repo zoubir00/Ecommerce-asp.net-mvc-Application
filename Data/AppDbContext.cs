@@ -14,7 +14,7 @@ namespace EticketsWebApp.Data
         {
             modelBuilder.Entity<Actor_Movie>().HasKey(am => new
             {
-                am.Actorid,
+                am.Id,
                 am.MovieId
             });
 
@@ -24,7 +24,7 @@ namespace EticketsWebApp.Data
 
             modelBuilder.Entity<Actor_Movie>().HasOne(a => a.Actor)
                  .WithMany(am => am.Actors_Movies)
-                 .HasForeignKey(a => a.Actorid);
+                 .HasForeignKey(a => a.Id);
 
 
             base.OnModelCreating(modelBuilder);

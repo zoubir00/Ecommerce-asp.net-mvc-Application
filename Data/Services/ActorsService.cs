@@ -1,44 +1,50 @@
-﻿using EticketsWebApp.Models;
+﻿using EticketsWebApp.Data.Base;
+using EticketsWebApp.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EticketsWebApp.Data.Services
 {
-    public class ActorsService : IActorsService
+    public class ActorsService : EntityBaseRepository<Actor>, IActorsService
     {
-        private readonly AppDbContext _context;
+        //private readonly AppDbContext _context;
 
-        public ActorsService(AppDbContext context)
-        {
-            _context = context;
-        }
-        public void Add(Actor actor)
-        {
-            _context.Actors.Add(actor);
-            _context.SaveChanges();
-        }
+        //public ActorsService(AppDbContext context)
+        //{
+        //    _context = context;
+        //}
 
-        public async Task Delete(int id)
-        {
-            var result = await _context.Actors.FirstOrDefaultAsync(a => a.ActorId == id);
-             _context.Actors.Remove(result);
-           await _context.SaveChangesAsync();
-        }
+        
+        
+            public ActorsService(AppDbContext context) : base(context) { }
+        
+        //public void Add(Actor actor)
+        //{
+        //    _context.Actors.Add(actor);
+        //    _context.SaveChanges();
+        //}
 
-        // get all the actors
-        public async  Task<IEnumerable<Actor>> GetAll()
-            => await _context.Actors.ToListAsync();
+        //public async Task Delete(int id)
+        //{
+        //    var result = await _context.Actors.FirstOrDefaultAsync(a => a.ActorId == id);
+        //    _context.Actors.Remove(result);
+        //    await _context.SaveChangesAsync();
+        //}
 
-        public async Task<Actor> GetById(int id)
-        {
-            var result = await _context.Actors.FirstOrDefaultAsync(a=>a.ActorId==id);
-            return result;
-        }
+        //// get all the actors
+        //public async Task<IEnumerable<Actor>> GetAll()
+        //    => await _context.Actors.ToListAsync();
 
-        public async Task Updateasync(int id, Actor Newactor)
-        {
-            Newactor.ActorId = id;
-            _context.Update(Newactor);
-            await _context.SaveChangesAsync();
-        }
+        //public async Task<Actor> GetById(int id)
+        //{
+        //    var result = await _context.Actors.FirstOrDefaultAsync(a => a.ActorId == id);
+        //    return result;
+        //}
+
+        //public async Task Updateasync(int id, Actor Newactor)
+        //{
+        //    Newactor.ActorId = id;
+        //    _context.Update(Newactor);
+        //    await _context.SaveChangesAsync();
+        //}
     }
 }

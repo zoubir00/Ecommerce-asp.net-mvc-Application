@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EticketsWebApp.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace EticketsWebApp.Models
 {
-    public class Actor
+    public class Actor : IEntityBase
     {
         [Key]
-        public int ActorId { get; set; }
+        public int Id { get; set; }
 
         [Display(Name ="Profile picture")]
         [Required(ErrorMessage ="Profile picture is required")]
@@ -23,6 +24,5 @@ namespace EticketsWebApp.Models
 
         //Relationships
         public List<Actor_Movie>? Actors_Movies { get; set; }
-
     }
 }

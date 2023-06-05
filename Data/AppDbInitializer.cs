@@ -220,95 +220,98 @@ namespace EticketsWebApp.Data
                     {
                         new Actor_Movie()
                         {
-                            Actorid = 1,
+                            Id = 1,
                             MovieId = 1
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 3,
+                            Id = 3,
                             MovieId = 1
                         },
 
                          new Actor_Movie()
                         {
-                            Actorid = 1,
+                            Id = 1,
                             MovieId = 2
                         },
                          new Actor_Movie()
                         {
-                            Actorid = 4,
+                            
+                             
+                             
+                             Id = 4,
                             MovieId = 2
                         },
 
                         new Actor_Movie()
                         {
-                            Actorid = 1,
+                            Id = 1,
                             MovieId = 3
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 2,
+                            Id = 2,
                             MovieId = 3
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 5,
+                            Id = 5,
                             MovieId = 3
                         },
 
 
                         new Actor_Movie()
                         {
-                            Actorid = 2,
+                            Id = 2,
                             MovieId = 4
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 3,
+                            Id = 3,
                             MovieId = 4
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 4,
+                            Id = 4,
                             MovieId = 4
                         },
 
 
                         new Actor_Movie()
                         {
-                            Actorid = 2,
+                            Id = 2,
                             MovieId = 5
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 3,
+                            Id = 3,
                             MovieId = 5
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 4,
+                            Id = 4,
                             MovieId = 5
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 5,
+                            Id = 5,
                             MovieId = 5
                         },
 
 
                         new Actor_Movie()
                         {
-                            Actorid = 3,
+                            Id = 3,
                             MovieId = 6
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 4,
+                            Id = 4,
                             MovieId = 6
                         },
                         new Actor_Movie()
                         {
-                            Actorid = 5,
+                            Id = 5,
                             MovieId = 6
                         },
                     });
