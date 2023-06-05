@@ -15,6 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // services
 builder.Services.AddScoped<IActorsService, ActorsService>();
 builder.Services.AddScoped<IProducersService, ProducersService>();
+builder.Services.AddScoped<ICinemaService, CinemaService>();
 
 
 // Add services to the container.
