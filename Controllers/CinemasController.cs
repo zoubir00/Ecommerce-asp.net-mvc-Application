@@ -35,7 +35,7 @@ namespace EticketsWebApp.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Logo,Name,Description")]Cinema cinema)
-        {
+         {
             if (!ModelState.IsValid) return View(cinema);
             
             await _service.Add(cinema);
