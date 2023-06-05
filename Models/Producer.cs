@@ -22,7 +22,7 @@ namespace EticketsWebApp.Models
         public string Bio { get; set; }
 
         //rlationShips
-        public List<Movie> Movies { get; set; }
+        public List<Movie>? Movies { get; set; }
        
     }
 }
