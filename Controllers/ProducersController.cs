@@ -26,7 +26,6 @@ namespace EticketsWebApp.Controllers
             if (ProducerDetail==null) return View("NotFound");
             return View(ProducerDetail);
         }
- with
         //Create 
         public IActionResult Create()
         {
