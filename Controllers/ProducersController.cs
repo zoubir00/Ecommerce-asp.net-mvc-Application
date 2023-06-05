@@ -39,5 +39,24 @@ namespace EticketsWebApp.Controllers
             await _service.Add(producer);
             return RedirectToAction(nameof(Index));
         }
+        //Edit/Producers 
+        public async Task<IActionResult> Edit(int id)
+        {
+            var producer = await _service.GetById(id);
+            return View(producer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,[Bind("Id,profilePictureURL,FullName,Bio")] Producer producer)
+        {
+            if (!ModelState.IsValid) return View(producer);
+
+            if(id==producer.Id) await _service.Updateasync(id,producer);
+            
+            return View(producer);
+        }
+
+
+
     }
 }
