@@ -59,5 +59,23 @@ namespace EticketsWebApp.Controllers
 
             return View(cinema);
         }
+
+        //Cinema/Delete
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var cinemaDetail = await _service.GetById(id);
+            if (cinemaDetail == null) return View("NotFount");
+            return View(cinemaDetail);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int id)
+        {
+            var cinemaDetail = await _service.GetById(id);
+            if (cinemaDetail == null) return View("NotFount");
+            await  _service.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
