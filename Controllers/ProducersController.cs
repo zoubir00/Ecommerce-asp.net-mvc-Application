@@ -43,6 +43,7 @@ namespace EticketsWebApp.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var producer = await _service.GetById(id);
+            if (producer == null) return View("NotFound");
             return View(producer);
         }
 
@@ -54,6 +55,25 @@ namespace EticketsWebApp.Controllers
             if(id==producer.Id) await _service.Updateasync(id,producer);
             
             return View(producer);
+        }
+
+        //Edit/Producers 
+        public async Task<IActionResult> Delete(int id)
+        {
+            var producer = await _service.GetById(id);
+            if (producer == null) return View("NotFound");
+            return View(producer);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int id)
+        {
+            var producerDetails = await _service.GetById(id);
+            if (producerDetails == null) return View("NotFound");
+
+            await _service.Delete(id);
+
+            return RedirectToAction(nameof(Index));
         }
 
 
