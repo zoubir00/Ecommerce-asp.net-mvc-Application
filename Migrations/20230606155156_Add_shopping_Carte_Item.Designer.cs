@@ -4,6 +4,7 @@ using EticketsWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EticketsWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230606155156_Add_shopping_Carte_Item")]
+    partial class Add_shopping_Carte_Item
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -222,7 +224,7 @@ namespace EticketsWebApp.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<int>("MovieId")
+                    b.Property<int>("MyPropertyId")
                         .HasColumnType("int");
 
                     b.Property<string>("ShoppingCarteId")
@@ -231,7 +233,7 @@ namespace EticketsWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MovieId");
+                    b.HasIndex("MyPropertyId");
 
                     b.ToTable("ShoppingCarteItems");
                 });
@@ -295,13 +297,13 @@ namespace EticketsWebApp.Migrations
 
             modelBuilder.Entity("EticketsWebApp.Models.ShoppingCarteItem", b =>
                 {
-                    b.HasOne("EticketsWebApp.Models.Movie", "Movie")
+                    b.HasOne("EticketsWebApp.Models.Movie", "MyProperty")
                         .WithMany()
-                        .HasForeignKey("MovieId")
+                        .HasForeignKey("MyPropertyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Movie");
+                    b.Navigation("MyProperty");
                 });
 
             modelBuilder.Entity("EticketsWebApp.Models.Actor", b =>

@@ -4,6 +4,7 @@ using EticketsWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EticketsWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230606153344_Order_and_OrderItems_Models")]
+    partial class Order_and_OrderItems_Models
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,11 +149,16 @@ namespace EticketsWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Orders");
                 });
@@ -211,31 +218,6 @@ namespace EticketsWebApp.Migrations
                     b.ToTable("Producers");
                 });
 
-            modelBuilder.Entity("EticketsWebApp.Models.ShoppingCarteItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShoppingCarteId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("ShoppingCarteItems");
-                });
-
             modelBuilder.Entity("EticketsWebApp.Models.Actor_Movie", b =>
                 {
                     b.HasOne("EticketsWebApp.Models.Actor", "Actor")
@@ -274,6 +256,13 @@ namespace EticketsWebApp.Migrations
                     b.Navigation("Producer");
                 });
 
+            modelBuilder.Entity("EticketsWebApp.Models.Order", b =>
+                {
+                    b.HasOne("EticketsWebApp.Models.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId");
+                });
+
             modelBuilder.Entity("EticketsWebApp.Models.OrderItem", b =>
                 {
                     b.HasOne("EticketsWebApp.Models.Movie", "Movie")
@@ -283,7 +272,7 @@ namespace EticketsWebApp.Migrations
                         .IsRequired();
 
                     b.HasOne("EticketsWebApp.Models.Order", "Order")
-                        .WithMany("OrderItems")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -291,17 +280,6 @@ namespace EticketsWebApp.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("EticketsWebApp.Models.ShoppingCarteItem", b =>
-                {
-                    b.HasOne("EticketsWebApp.Models.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("EticketsWebApp.Models.Actor", b =>
