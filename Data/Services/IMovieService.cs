@@ -5,5 +5,6 @@ namespace EticketsWebApp.Data.Services
 {
     public interface IMovieService:IEntityBaseRepository<Movie>
     {
+        Task<Movie> GetMovieBYIdAsync(int id);
     }
 }
