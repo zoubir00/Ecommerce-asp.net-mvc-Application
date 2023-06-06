@@ -9,7 +9,7 @@ namespace EticketsWebApp.Data.ViewModels
     public class NewMovieVM
 
     {
-
+        public int Id { get; set; }
         [Display(Description = "Movie name")]
         [Required(ErrorMessage ="Field is required")]
         public string Name { get; set; }
