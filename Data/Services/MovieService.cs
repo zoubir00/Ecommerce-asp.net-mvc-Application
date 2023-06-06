@@ -2,6 +2,7 @@
 using EticketsWebApp.Data.ViewModels;
 using EticketsWebApp.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EticketsWebApp.Data.Services
 {
@@ -12,6 +13,35 @@ namespace EticketsWebApp.Data.Services
         public MovieService(AppDbContext context):base(context)
         {
             _context = context;
+        }
+
+        public async Task CreateMovieAsync(NewMovieVM data)
+        {
+            var newMovie = new Movie
+            {
+                Name = data.Name,
+                Description = data.Description,
+                Price = data.Price,
+                ImageUrl = data.ImageUrl,
+                CinemaId = data.CinemaId,
+                StartDate = data.StartDate,
+                EndDate = data.EndDate,
+                MovieCategory = data.MovieCategory,
+                ProducerId = data.ProducerId
+            };
+            await _context.Movies.AddAsync(newMovie);
+           await _context.SaveChangesAsync();
+            // add movie actors
+            foreach(var actorId in data.ActorIds)
+            {
+                var NewmovieActors = new Actor_Movie()
+                {
+                    MovieId = newMovie.Id,
+                    Id = actorId
+                };
+                await _context.Actors_Movies.AddAsync(NewmovieActors);
+               await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<Movie> GetMovieBYIdAsync(int id)
