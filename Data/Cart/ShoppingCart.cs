@@ -38,6 +38,27 @@ namespace EticketsWebApp.Data.Cart
             _context.SaveChanges();
         }
 
+        //Remove cartItem
+        public void RemoveItemFromCart(Movie movie)
+        {
+            var ShoppingCartItem = _context.ShoppingCarteItems.FirstOrDefault(n => n.Movie.Id == movie.Id && n.ShoppingCarteId == ShoppingCartId);
+            if (ShoppingCartItem != null)
+            {
+                if (ShoppingCartItem.Amount > 1)
+                {
+                    ShoppingCartItem.Amount--; 
+                }
+                else
+                { 
+                _context.ShoppingCarteItems.Remove(ShoppingCartItem);  
+                }
+            }
+            _context.SaveChanges();
+
+            
+        }
+
+
         public List<ShoppingCarteItem> GetShoppingCartItem()
         {
             return ShoppingCarteItems ?? (ShoppingCarteItems = _context.ShoppingCarteItems
