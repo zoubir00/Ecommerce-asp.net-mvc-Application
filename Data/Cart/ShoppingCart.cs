@@ -15,6 +15,19 @@ namespace EticketsWebApp.Data.Cart
 
         public List<ShoppingCarteItem> ShoppingCarteItems { get; set; }
 
+
+        // Add shoppingcart service
+        public static ShoppingCart GetShoppingCart(IServiceProvider service)
+        {
+            ISession session = service.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+            var context = service.GetService<AppDbContext>();
+
+            string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+            session.SetString("CartId", cartId);
+            return new ShoppingCart(context) { ShoppingCartId = cartId };
+
+        }
+
         // Add Item to the car
 
         public void AddItemToCart(Movie movie)

@@ -25,7 +25,7 @@ namespace EticketsWebApp.Controllers
                 ShoppingCart = _shoppingCart,
                 shoppingcartTotal = _shoppingCart.GetShoppingCartTotal()
             }; 
-            return View();
+            return View(response);
         }
     }
 }
