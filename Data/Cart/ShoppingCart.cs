@@ -15,6 +15,29 @@ namespace EticketsWebApp.Data.Cart
 
         public List<ShoppingCarteItem> ShoppingCarteItems { get; set; }
 
+        // Add Item to the car
+
+        public void AddItemToCart(Movie movie)
+        {
+            var ShoppingCartItem = _context.ShoppingCarteItems.FirstOrDefault(n => n.Movie.Id == movie.Id && n.ShoppingCarteId == ShoppingCartId);
+            if (ShoppingCartItem == null)
+            {
+                ShoppingCartItem =new ShoppingCarteItem()
+                {
+                    ShoppingCarteId = ShoppingCartId,
+                    Movie = movie,
+                    Amount = 1
+                };
+                _context.ShoppingCarteItems.Add(ShoppingCartItem);
+            }
+            else
+            {
+                ShoppingCartItem.Amount++;
+            }
+
+            _context.SaveChanges();
+        }
+
         public List<ShoppingCarteItem> GetShoppingCartItem()
         {
             return ShoppingCarteItems ?? (ShoppingCarteItems = _context.ShoppingCarteItems
