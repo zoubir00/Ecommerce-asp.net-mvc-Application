@@ -15,7 +15,7 @@ namespace EticketsWebApp.Controllers
             _movieService = movieService;
             _shoppingCart = shoppingCart;
         }
-        public IActionResult Index()
+        public IActionResult ShoppingCart()
         {
             var Items = _shoppingCart.GetShoppingCartItem();
             _shoppingCart.ShoppingCarteItems = Items;
@@ -36,7 +36,18 @@ namespace EticketsWebApp.Controllers
             {
                 _shoppingCart.AddItemToCart(item);
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+
+        public async Task<RedirectToActionResult> RemoveItemFromShoppingCart(int id)
+        {
+            var item = await _movieService.GetMovieBYIdAsync(id);
+
+            if (item != null)
+            {
+                _shoppingCart.RemoveItemFromCart(item);
+            }
+            return RedirectToAction(nameof(ShoppingCart));
         }
     }
 }
