@@ -17,6 +17,14 @@ namespace EticketsWebApp.Controllers
             _shoppingCart = shoppingCart;
             _orderService = orderService;
         }
+
+        public  async Task<IActionResult> Index()
+        {
+            string userId = "";
+            var orders =await _orderService.GetOrderByUserIdAsync(userId);
+            return View(orders);
+        }
+
         public IActionResult ShoppingCart()
         {
             var Items = _shoppingCart.GetShoppingCartItem();
