@@ -60,13 +60,14 @@
 
 
 @section scripts{
-    <script src="https://www.paypalobjects.com/api/checkout.js"></script>  
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <script>
+        let _total= @Html.Raw(Model.shoppingcartTotal);
         paypal.Button.render({
             // config enviroment
             env:'sandbox',
             client:{
-                sandbox: 'EF_JzPz6MEhS_WWfJiBUpsB2NiOByyFyVXZMmew-KfK8LETFYcewGuMpy1IwJaHGwR5wz8Z4CBzMOw3j'
+                sandbox: 'AQeUHARoGsLrGn6qPlgq6pkJU2m-3GIgoVZ3cEPqGWjaHZeqR3R3tcXfPg-QTe38aJcaQ7QVWFq_Xhx1'
                 
             },
             //custmize button
@@ -79,13 +80,25 @@
             commit:true,
             // set up payment
 
-            payment:function(data,actions){
-                console.log("payment set up");
+
+            //Set up a payment
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: _total,
+                            currency: 'USD'
+                        }
+                    }]
+                });
             },
 
             // execute
-                    onAuthorize: function (data, actions) {
-                console.log("payment executed");
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function () {
+                    var url = '@Url.Action("CompleteOrder", "Orders", new { })';
+                    window.location.href = url;
+                });
             }
 
         }, '#paypal-btn')
