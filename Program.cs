@@ -18,6 +18,8 @@ builder.Services.AddScoped<IActorsService, ActorsService>();
 builder.Services.AddScoped<IProducersService, ProducersService>();
 builder.Services.AddScoped<ICinemaService, CinemaService>();
 builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc=> ShoppingCart.GetShoppingCart(sc));
 
