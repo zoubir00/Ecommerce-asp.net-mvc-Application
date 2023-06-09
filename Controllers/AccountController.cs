@@ -46,6 +46,11 @@ namespace EticketsWebApp.Controllers
             ViewData["Error"] = "Wrong credentials, please try again";
             return View(loginVM);
         }
-       
+
+        // Account/Register
+        public IActionResult Register() => View(new RegisterVM());
+
+
+
     }
 }
