@@ -1,4 +1,5 @@
 ﻿using EticketsWebApp.Data;
+using EticketsWebApp.Data.Static;
 using EticketsWebApp.Data.ViewModels;
 using EticketsWebApp.Models;
 using Microsoft.AspNetCore.Identity;
@@ -50,7 +51,38 @@ namespace EticketsWebApp.Controllers
         // Account/Register
         public IActionResult Register() => View(new RegisterVM());
 
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVM registerVM)
+        {
+            if (!ModelState.IsValid) return View(registerVM);
+
+            var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
+            if (user != null)
+            {
+                ViewData["Error"] = "Sorry, this Email Adresse is already exist";
+                return View(registerVM);
+            }
+            var newUser = new ApplicationUser()
+            {
+                FullName=registerVM.FullName,
+                Email=registerVM.EmailAddress,
+                UserName=registerVM.EmailAddress
+            };
+            var userResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
+            if (userResponse.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+            }
+            return View("RegisterCompleted");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Movies");
+        }
 
 
-    }
+
+        }
 }
