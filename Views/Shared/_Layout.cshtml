@@ -64,7 +64,9 @@
                     <ul>
                         @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
-
+                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">
+                        <i class="bi bi-list"></i> Log in
+                    </a>
                     @*User profile*@
                     <div class="dropdown">
                        <div class="btn-group">
