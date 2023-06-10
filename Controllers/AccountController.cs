@@ -4,6 +4,7 @@ using EticketsWebApp.Data.ViewModels;
 using EticketsWebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EticketsWebApp.Controllers
 {
@@ -21,7 +22,11 @@ namespace EticketsWebApp.Controllers
             _context = context;
         }
 
-
+        public async Task<IActionResult> Users()
+        {
+           var users = await _userManager.Users.ToListAsync();
+            return View(users);
+        }
         public IActionResult Login()=> View(new LoginVM());
 
         [HttpPost]
