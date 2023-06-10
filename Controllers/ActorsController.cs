@@ -1,6 +1,7 @@
 ﻿using EticketsWebApp.Data;
 using EticketsWebApp.Data.Base;
 using EticketsWebApp.Data.Services;
+using EticketsWebApp.Data.Static;
 using EticketsWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EticketsWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class ActorsController : Controller
     {
         private readonly IActorsService _service;

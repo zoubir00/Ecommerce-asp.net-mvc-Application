@@ -1,5 +1,6 @@
 ﻿using EticketsWebApp.Data;
 using EticketsWebApp.Data.Services;
+using EticketsWebApp.Data.Static;
 using EticketsWebApp.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EticketsWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class MoviesController : Controller
     {
         private readonly IMovieService _service;
@@ -25,6 +26,7 @@ namespace EticketsWebApp.Controllers
             return View(movies);
         }
 
+        [AllowAnonymous]
         // Filter movies
         public async Task<IActionResult> Filter(string searchString)
         {

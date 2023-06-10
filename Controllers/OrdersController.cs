@@ -1,5 +1,6 @@
 ﻿using EticketsWebApp.Data.Cart;
 using EticketsWebApp.Data.Services;
+using EticketsWebApp.Data.Static;
 using EticketsWebApp.Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,15 +23,16 @@ namespace EticketsWebApp.Controllers
             _orderService = orderService;
         }
 
-        [AllowAnonymous]
+        
         public  async Task<IActionResult> Index()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string userRole =User.FindFirstValue(ClaimTypes.Role);
+
             var orders =await _orderService.GetOrderByUserIdAndRoleAsync(userId,userRole);
             return View(orders);
         }
-
+        
         public IActionResult ShoppingCart()
         {
             var Items = _shoppingCart.GetShoppingCartItem();
@@ -43,7 +45,7 @@ namespace EticketsWebApp.Controllers
             }; 
             return View(response);
         }
-
+        
         public async Task<RedirectToActionResult> AddItemToShoppingCart(int id)
         {
             var item = await _movieService.GetMovieBYIdAsync(id);
@@ -54,7 +56,7 @@ namespace EticketsWebApp.Controllers
             }
             return RedirectToAction(nameof(ShoppingCart));
         }
-
+        
         public async Task<RedirectToActionResult> RemoveItemFromShoppingCart(int id)
         {
             var item = await _movieService.GetMovieBYIdAsync(id);
@@ -65,7 +67,7 @@ namespace EticketsWebApp.Controllers
             }
             return RedirectToAction(nameof(ShoppingCart));
         }
-
+        
         public async Task<IActionResult> CompleteOrder()
         {
             var items = _shoppingCart.GetShoppingCartItem();

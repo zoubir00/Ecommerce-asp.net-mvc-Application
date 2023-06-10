@@ -1,5 +1,6 @@
 ﻿using EticketsWebApp.Data;
 using EticketsWebApp.Data.Services;
+using EticketsWebApp.Data.Static;
 using EticketsWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EticketsWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles =UserRoles.Admin)]
     public class ProducersController : Controller
     {
         private readonly IProducersService _service ;
