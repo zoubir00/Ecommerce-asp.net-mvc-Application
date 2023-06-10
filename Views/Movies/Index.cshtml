@@ -61,8 +61,11 @@
                             <p class="card-text">
                                 <a class="btn btn-outline-primary float-start" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Show Details
-                                </a>
-                                <a class="btn btn-outline-info float-end" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                </a>                           
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-outline-info float-end" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                }
 
                                 <a class="btn btn-success text-white  @((DateTime.Now > item.EndDate) ? "disabled" : "")"
                                    asp-controller="Orders"
