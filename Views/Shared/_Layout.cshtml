@@ -57,42 +57,15 @@
  
                         </li>
                     </ul> 
-                    <form class="form-inline my-2 my-lg-0 " asp-controller="Movies" asp-action="Filter" style="padding-right: 25px;">
-                        <input name="searchString" type="text" class="form-control" placeholder="Search for a movie..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                        @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>*@
-                    </form>
-                    <ul>
+                        <form class="form-inline my-2 my-lg-0 " asp-controller="Movies" asp-action="Filter" style="padding-right: 25px;">
+                          <input name="searchString" type="text" class="form-control" placeholder="Search for a movie..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                          @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>*@
+                        </form>
+                        <ul>
                         @await Component.InvokeAsync("ShoppingCartSummary")
-                    </ul>
-                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">
-                        <i class="bi bi-list"></i> Log in
-                    </a>
-                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">
-                        <i class="bi bi-list"></i> Register
-                    </a>
-                    @*User profile*@
-                    <div class="dropdown">
-                       <div class="btn-group">
-                            <button type="button" class="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-badge"></i> Hello User
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="profile-btn">
-                            <li>
-                                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
-                                    <i class="bi bi-list"></i> Orders
-                                </a>
-                            </li>
                         </ul>
-                       </div>
-                    </div>
-
-                    <span style="padding:5px;"></span>
-                    <form asp-controller="Account" asp-action="Logout">
-                        <button class="btn btn-outline-danger my-2 my-sm-0">
-                            Log out
-                        </button>
-                    </form>
-                    </div>
+                    <partial name="_Identity.cshtml"></partial>
+                   
                 </div>
             </div>
         </nav>
