@@ -2,11 +2,13 @@
 using EticketsWebApp.Data.Base;
 using EticketsWebApp.Data.Services;
 using EticketsWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EticketsWebApp.Controllers
 {
+    [Authorize]
     public class ActorsController : Controller
     {
         private readonly IActorsService _service;
@@ -16,7 +18,7 @@ namespace EticketsWebApp.Controllers
             _service = service;
            
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var actors = await _service.GetAll();
@@ -41,6 +43,7 @@ namespace EticketsWebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var ActorDetail =await _service.GetById(id);

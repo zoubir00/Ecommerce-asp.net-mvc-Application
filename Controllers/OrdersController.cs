@@ -1,11 +1,14 @@
 ﻿using EticketsWebApp.Data.Cart;
 using EticketsWebApp.Data.Services;
 using EticketsWebApp.Data.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace EticketsWebApp.Controllers
 {
+
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IMovieService _movieService;
@@ -19,6 +22,7 @@ namespace EticketsWebApp.Controllers
             _orderService = orderService;
         }
 
+        [AllowAnonymous]
         public  async Task<IActionResult> Index()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
