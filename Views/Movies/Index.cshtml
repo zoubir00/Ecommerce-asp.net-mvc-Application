@@ -6,7 +6,7 @@
     ViewData["Title"] = "list of movies";
 }
 @*Define view*@
-<h1>Hello here there is a list of movies </h1>
+<h1>Movies </h1>
 
 
 <div class="row">
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            <p class="card-text">@item.Description</p>
+                            <p class="card-text description">@item.Description</p>
                             <p class="card-text"><b>Cinema: </b>@item.Cinema.Name</p>
                             <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
                             <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
@@ -59,13 +59,13 @@
                     <div class="col-md-12">
                         <div class="card-footer ">
                             <p class="card-text">
-                                <a class="btn btn-outline-primary float-start" asp-action="Details" asp-route-id="@item.Id">
+                                <a class="btnmv btn btn-outline-info float-start mb-2" style="cursor:auto;" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Show Details
                                 </a>                           
-                                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                               @* @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                 {
                                     <a class="btn btn-outline-info float-end" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                }
+                                }*@
 
                                 <a class="btn btn-success text-white  @((DateTime.Now > item.EndDate) ? "disabled" : "")"
                                    asp-controller="Orders"
@@ -82,7 +82,10 @@
     }
 </div>
 
-@await Html.PartialAsync("_CreateItem","Movies")
+
+
+
+        @await Html.PartialAsync("_CreateItem","Movies")
 
 
 

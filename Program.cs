@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var ConnectionString = builder.Configuration.GetConnectionString("AzureConnectionString");
+var ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 // Dbcontext configuration
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

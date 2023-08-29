@@ -23,17 +23,17 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
-                        <label asp-for="EmailAddress" class="control-label"></label>
+                        <label asp-for="EmailAddress" class="control-label text-white"></label>
                         <input asp-for="EmailAddress" class="form-control" />
                         <span asp-validation-for="EmailAddress" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
+                        <label asp-for="Password" class="control-label text-white"></label>
                         <input asp-for="Password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-4">
                         <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
                         <a class="btn btn-outline-secondary" asp-controller="Movies" asp-action="Index">Cancel</a>
                     </div>
